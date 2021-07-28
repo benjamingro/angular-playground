@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Lexend";
+  src: local("Lexend"),
+    url("./assets/fonts/Lexend/Lexend-Regular.ttf") format("truetype");
+}
+
+$font-family-base: "Lexend", sans-serif; // add this line first before importing bootstrap
+
+@import "./node_modules/bootstrap/scss/bootstrap.scss";

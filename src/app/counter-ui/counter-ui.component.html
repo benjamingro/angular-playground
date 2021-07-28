@@ -1,0 +1,39 @@
+<div class="card h-100">
+    <div class="card-header">
+        <h4>CounterUI component</h4>
+    </div>
+    <div class="card-body">
+        <div class="row w-100">
+            <div class="col text-secondary">
+                Counter
+            </div>
+        </div>
+        <div class="row w-100">
+            <div class="col d-flex justify-content-center">
+                <h4>{{counter}}</h4>
+            </div>
+            <div class="col d-flex justify-content-center">
+                <button class="btn btn-secondary" (click)="resetCounter()">Reset</button>
+            </div>
+        </div>
+        <div class="row w-100 mt-2">
+            <div class="col text-secondary">
+                Increment
+            </div>
+            <div class="col text-secondary">
+                Interval / ms
+            </div>
+        </div>
+        <div class="row w-100">
+            <div class="col text-secondary">
+                <input type="number" step="1" min="1" class="w-100" [(ngModel)]="increment"> 
+            </div>
+            <div class="col text-secondary">
+                <input type="number" step="10" class="w-100" [(ngModel)]="timerInterval" (change)="resetTimer()">
+            </div>
+        </div>
+        <p class="card-text text-secondary mt-4">
+            This Angular component accepts user input to customize the counter increment and interval. 
+        </p>
+    </div>
+</div>

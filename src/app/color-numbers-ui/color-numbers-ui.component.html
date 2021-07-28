@@ -1,0 +1,29 @@
+<div class="card h-100">
+    <div class="card-header">
+        <h4>ColorNumbersUi component</h4>
+    </div>
+    <div class="card-body">
+        <div class="row w-100">
+            <div class="col d-flex justify-content-center" style="font-weight:bold;">
+                <!-- <h4>{{message}}</h4> -->
+                <h4 *ngFor="let colorNumber of colorNumberArray" class="mx-1" [style.color]="colorNumber.color">{{colorNumber.number}}</h4>
+            </div>
+        </div>
+        <div class="row w-100 my-2">
+            <div class="col-4 d-flex justify-content-center" >
+                <button class="btn btn-outline-secondary"(click)="popColorNumber()" >Delete number</button>
+            </div>
+            <div class="col-4 d-flex justify-content-center" >
+                <button class="btn btn-outline-primary"(click)="pushColorNumber()" >Add number</button>
+            </div>
+            <div class="col-4 d-flex justify-content-center" >
+                <button class="btn btn-outline-info"(click)="refreshColors()" >Refresh colors</button>
+            </div>
+        </div>
+        
+        
+        <p class="card-text text-secondary mt-4">
+            This component generates output based on an array of numbers. A color is randomly assigned to each number.  
+        </p>
+    </div>
+</div>

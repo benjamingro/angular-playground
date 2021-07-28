@@ -1,0 +1,27 @@
+<div class="card h-100">
+    <div class="card-header">
+        <h4>TextMirror component</h4>
+    </div>
+    <div class="card-body">
+        <div class="row w-100">
+            <div class="col">
+                <input [(ngModel)]="hello">
+            </div>
+            <div class="col">
+                {{hello}}
+            </div>
+        </div>
+        <div class="row w-100 my-3">
+            <div class="col">
+                <input [(ngModel)]="world">
+            </div>
+            <div class="col">
+                {{world}}
+            </div>
+        </div>
+        
+        <p class="card-text text-secondary mt-4">
+            This takes user input and mirrors it in an HTML element. I do this a lot with AngularJS for customizing nutrition labels and wanted to see what an Angular version would look like.   
+        </p>
+    </div>
+</div>
