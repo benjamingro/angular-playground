@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "Archivo Black";
+  src: local("Archivo Black"),
+    url("../../assets/fonts/Archivo_Black/ArchivoBlack-Regular.ttf")
+      format("truetype");
+}
+
+@font-face {
+  font-family: "Archivo";
+  src: local("Archivo"),
+    url("../../assets/fonts/Archivo/Archivo-VariableFont_wdth,wght.ttf")
+      format("truetype");
+}
+
+.atmMachineTitleStyles {
+  font-family: "Archivo Black", sans-serif;
+}
+
+.atmMachineFont {
+  font-family: "Archivo", sans-serif;
+  font-size: large;
+}
+
+.clickArea {
+  cursor: pointer;
+}
+.screenColor {
+  background-color: #d6e6f6;
+  /* background-color:antiquewhite; */
+  min-height: 270px !important;
+}

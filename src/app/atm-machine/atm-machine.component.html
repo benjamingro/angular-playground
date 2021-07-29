@@ -1,0 +1,252 @@
+<div class="card h-100">
+    <div class="card-header">
+        <h4>ATM Machine component</h4>
+    </div>
+    <div class="card-body">
+
+        <div class="card">
+            <div class="card-header d-flex justify-content-center atmMachineTitleStyles">
+                ATM Machine
+            </div>
+
+            <div class="card-body screenColor atmMachineFont">
+                <!-- home screen -->
+                <div *ngIf="state==='home'">
+                    <div class="row w-100">
+                        <div class="col d-flex justify-content-center">
+                            <fa-icon [icon]="faDollarSign" style="color:rgb(255, 0, 24);" class="mx-1"></fa-icon>
+                            <fa-icon [icon]="faDollarSign" style="color:rgb(255, 165, 44);" class="mx-1"></fa-icon>
+                            <fa-icon [icon]="faDollarSign" style="color:rgb(255, 255, 65);" class="mx-1"></fa-icon>
+                            <fa-icon [icon]="faDollarSign" style="color:rgb(0, 128, 24);" class="mx-1"></fa-icon>
+                            <fa-icon [icon]="faDollarSign" style="color:rgb(0, 0, 249);" class="mx-1"></fa-icon>
+                            <fa-icon [icon]="faDollarSign" style="color:rgb(134, 0, 125);" class="mx-1"></fa-icon>
+
+                        </div>
+                    </div>
+                    <div class="row w-100 mt-3">
+                        <div class="col">
+                            Welcome. Please select from the choices below.
+                        </div>
+                    </div>
+                    <div class="row w-100 mt-3">
+                        <div class="col-4">
+                            <button class="btn btn-primary" (click)="setState('balance')">Account balance</button>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-warning" (click)="setState('deposit')">Deposit funds</button>
+
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-success" (click)="setState('withdraw')">Withdraw funds</button>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- balance screen -->
+                <div *ngIf="state==='balance'">
+                    <p class="card-text">
+                        Your account balance is
+                    </p>
+                    <p class="card-text d-flex justify-content-center bg-light border">
+                        {{balance | currency}}
+                    </p>
+                    <div class="row w-100 text-primary clickArea">
+                        <div class="col" (click)="setState('home')">
+                            <fa-icon [icon]="faArrowLeft" style="" class=""></fa-icon>
+                        </div>
+                        <div class="col d-flex justify-content-end" (click)="setState('withdraw')">
+                            <fa-icon [icon]="faArrowRight" style="" class=""></fa-icon>
+                        </div>
+                    </div>
+                    <div class="row w-100 text-primary clickArea">
+                        <div class="col" (click)="setState('home')">
+                            Back
+                        </div>
+                        <div class="col d-flex justify-content-end" (click)="setState('withdraw')">
+                            Withdraw
+                        </div>
+                    </div>
+                </div>
+                <!-- deposit screen -->
+                <div *ngIf="state==='deposit'">
+                    <p class="card-text">
+                        Enter the amount to deposit
+                    </p>
+                    <div class="row w-100">
+                        <div class="col d-flex justify-content-center">
+                            <form [formGroup]="depositForm" (ngSubmit)="onSubmit_deposit()">
+                                <div class="input-group mb-1 d-flex justify-content-center">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input type="text" class="form-control" style="max-width:80px;" formControlName="depositInput">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                                <div class="row w-100" *ngIf="depositInput?.valid || !depositSubmitted">
+                                    <div class="col">
+                                        &nbsp;
+                                    </div>
+                                </div>
+
+                                <div *ngIf="depositInput?.invalid && depositSubmitted">
+
+
+                                    <div class="row"
+                                        *ngIf="(depositInput?.errors?.pattern || depositInput?.errors?.min)">
+                                        <div class="col text-danger">
+                                            Value must be a positive integer.
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                                <div class="row mt-2">
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-primary" type="submit">Deposit</button>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row w-100 text-primary clickArea">
+                        <div class="col" (click)="setState('home')">
+                            <fa-icon [icon]="faArrowLeft" style="" class=""></fa-icon>
+                        </div>
+                    </div>
+                    <div class="row w-100 text-primary clickArea">
+                        <div class="col" (click)="setState('home')">
+                            Home
+                        </div>
+                    </div>
+                </div>
+                <!-- depositSuccess screen -->
+                <div *ngIf="state==='depositSuccess'">
+                    <div class="row w-100">
+                        <div class="col d-flex justify-content-center">
+                            Thank you
+                        </div>
+                    </div>
+                    <p class="card-text text-secondary">
+                        Your deposit of <span class="text-dark">{{depositForm.value.depositInput |
+                            currency}}</span> has been accepted.
+                    </p>
+                    <p class="card-text text-secondary">
+                        Account balance
+                    </p>
+                    <p class="card-text d-flex justify-content-center bg-light border">
+                        {{balance | currency}}
+                    </p>
+                    <div class="row w-100 text-primary clickArea">
+                        <div class="col" (click)="setState('home')">
+                            <fa-icon [icon]="faArrowLeft" style="" class=""></fa-icon>
+                        </div>
+                    </div>
+                    <div class="row w-100 text-primary clickArea">
+                        <div class="col" (click)="setState('home')">
+                            Home
+                        </div>
+                    </div>
+                </div>
+                <!-- withdraw screen -->
+                <div *ngIf="state==='withdraw'">
+                    <p class="card-text">
+                        Enter the amount to withdraw
+                    </p>
+                    <div class="row w-100">
+                        <div class="col d-flex justify-content-center">
+                            <form [formGroup]="withdrawForm" (ngSubmit)="onSubmit_withdraw()">
+                                <div class="input-group mb-1 d-flex justify-content-center">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input type="text" class="form-control" style="max-width:80px;" formControlName="withdrawInput">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                                <div class="row w-100" *ngIf="withdrawInput?.valid || !withdrawSubmitted">
+                                    <div class="col">
+                                        &nbsp;
+                                    </div>
+                                </div>
+
+                                <div *ngIf="withdrawInput?.invalid && withdrawSubmitted">
+
+
+                                    <div class="row"
+                                        *ngIf="(withdrawInput?.errors?.pattern || withdrawInput?.errors?.min)">
+                                        <div class="col text-danger">
+                                            Value must be a positive integer.
+                                        </div>
+                                    </div>
+
+                                    <div class="row"
+                                        *ngIf="withdrawInput?.errors?.max">
+                                        <div class="col text-danger">
+                                            Value must not exceed account balance.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-primary" type="submit">Withdraw</button>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row w-100 text-primary clickArea">
+                        <div class="col" (click)="setState('home')">
+                            <fa-icon [icon]="faArrowLeft" style="" class=""></fa-icon>
+                        </div>
+                    </div>
+                    <div class="row w-100 text-primary clickArea">
+                        <div class="col" (click)="setState('home')">
+                            Home
+                        </div>
+                    </div>
+                </div>
+                <!-- withdrawSuccess screen -->
+                <div *ngIf="state==='withdrawSuccess'">
+                    <div class="row w-100">
+                        <div class="col d-flex justify-content-center">
+                            Thank you
+                        </div>
+                    </div>
+                    <p class="card-text text-secondary">
+                        Your withdrawal of <span class="text-dark">{{withdrawForm.value.withdrawInput |
+                            currency}}</span> has been accepted.
+                    </p>
+                    <p class="card-text text-secondary">
+                        Account balance
+                    </p>
+                    <p class="card-text d-flex justify-content-center bg-light border">
+                        {{balance | currency}}
+                    </p>
+                    <div class="row w-100 text-primary clickArea">
+                        <div class="col" (click)="setState('home')">
+                            <fa-icon [icon]="faArrowLeft" style="" class=""></fa-icon>
+                        </div>
+                    </div>
+                    <div class="row w-100 text-primary clickArea">
+                        <div class="col" (click)="setState('home')">
+                            Home
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <p class="card-text text-secondary mt-4">
+            This component is the Angular version of the MIT xPRO Week 15 ATM Machine lesson.
+        </p>
+    </div>
+</div>

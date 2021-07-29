@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Indie Flower";
+    src: local("Indie Flower"),
+      url("../../assets/fonts/Indie_Flower/IndieFlower-Regular.ttf") format("truetype");
+  }
+
+.handwriting{
+    font-family:"Indie Flower", cursive; 
+    font-weight:700; 
+    font-size:1.4rem;
+}

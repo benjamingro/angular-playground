@@ -1,0 +1,36 @@
+<div class="card h-100">
+    <div class="card-header">
+        <h4>ToDo List component</h4>
+    </div>
+    <div class="card-body">
+        <div *ngFor="let item of toDoList; index as i;">
+            <div class="row w-100 handwriting">
+                <div class="col-lg-8" [style.text-decoration]="item.completed ? 'line-through' : ''" >
+                    {{item.task}}
+                </div>
+                <div class="col-lg-2">
+                    <fa-icon [icon]="faTimesCircle" (click)="removeItem(i)" class="text-warning"></fa-icon>
+                </div>
+                <div class="col-lg-2">
+                    <fa-icon [icon]="faCheck" *ngIf="!item.completed" (click)="completeItem(i)" class="text-success"></fa-icon>
+                    <fa-icon [icon]="faSyncAlt" *ngIf="item.completed" (click)="redoItem(i)" class="text-info"></fa-icon>
+
+                </div>
+            </div>
+            <div class="row w-100 my-1">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 border-bottom"></div>
+                <div class="col-lg-1"></div>
+            </div>
+
+        </div>
+        <form class="handwriting d-flex justify-content-center mt-2" [formGroup]="addToDoForm" (ngSubmit)="onSubmit()">
+            <input type="text" placeholder="Add todo..."
+            formControlName="addToDo">
+        </form>
+
+        <p class="card-text text-secondary mt-4">
+            This component was created as the Angular version of MIT xPRO Week 14 ToDo List lesson.
+        </p>
+    </div>
+</div>

@@ -16,6 +16,9 @@ import { ColorNumbersComponent } from './color-numbers/color-numbers.component';
 import { ColorNumbersUiComponent } from './color-numbers-ui/color-numbers-ui.component';
 import { TextMirrorComponent } from './text-mirror/text-mirror.component';
 import { BasicFormComponent } from './basic-form/basic-form.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AtmMachineComponent } from './atm-machine/atm-machine.component';
 
 @NgModule({
   declarations: [
@@ -31,13 +34,16 @@ import { BasicFormComponent } from './basic-form/basic-form.component';
     ColorNumbersComponent,
     ColorNumbersUiComponent,
     TextMirrorComponent,
-    BasicFormComponent
+    BasicFormComponent,
+    TodoListComponent,
+    AtmMachineComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
