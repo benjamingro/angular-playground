@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,9 @@ import { BasicFormComponent } from './basic-form/basic-form.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AtmMachineComponent } from './atm-machine/atm-machine.component';
+import { HnSearchComponent } from './hn-search/hn-search.component';
+import { SquareComponent } from './square/square.component';
+import { BoardComponent } from './board/board.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,10 @@ import { AtmMachineComponent } from './atm-machine/atm-machine.component';
     TextMirrorComponent,
     BasicFormComponent,
     TodoListComponent,
-    AtmMachineComponent
+    AtmMachineComponent,
+    HnSearchComponent,
+    SquareComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +51,8 @@ import { AtmMachineComponent } from './atm-machine/atm-machine.component';
     FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

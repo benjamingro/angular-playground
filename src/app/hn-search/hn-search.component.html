@@ -1,0 +1,109 @@
+<div class="card h-100">
+    <div class="card-header">
+        <h4>Hacker News search</h4>
+    </div>
+    <div class="card-body">
+        <!-- start search form -->
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit_search()">
+            <div class="row w-100">
+                <div class="col text-secondary">
+                    Search term
+                </div>
+            </div>
+            <div class="row w-100">
+                <div class="col-lg-6">
+                    <input type="text" formControlName="searchInput">
+                </div>
+                <div class="col-lg-6">
+                    <button class="btn btn-primary" style="min-width:210px;" [ngClass]="searchInProgress?'disabled':''">Search</button>
+                </div>
+            </div>
+            <div class="row w-100">
+                <div class="col" *ngIf="searchInput?.valid || !searchSubmitted">
+                    &nbsp; 
+                </div>
+                <div class="col text-danger " *ngIf="searchInput?.invalid  && searchSubmitted">
+                    Please enter a search term
+                </div>
+            </div>
+        </form>
+        <!-- end search form -->
+
+        <div class="card" style="max-height:250px;overflow-y:scroll;" *ngIf="results.hits.length>0">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let article of results.hits">
+                    <a [attr.href]="article.url?article.url:(article.story_url?article.story_url:'')" target="_blank">{{article.title ? article.title : (article.story_title ? article.story_title : 'title unavailable')}}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card text-secondary" *ngIf="noResults">
+            <div class="card-body">
+                <p class="card-text">
+                    Sorry, no results avaialble for this search.
+                </p>
+            </div>
+        </div>
+        
+        <!--start page form -->
+        <form *ngIf="results.hits?.length" class="mt-3" [formGroup]="pageForm" (ngSubmit)="onSubmit_page()">
+            <div class="row w-100">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-1">
+                    <button class="btn btn-secondary" [ngClass]="(currentPage===1 || searchInProgress)?'disabled':''" (click)="page('first')">
+                        <fa-icon [icon]="faAngleDoubleLeft"></fa-icon>
+                    </button>
+                </div>
+                <div class="col-lg-1">
+                    <button class="btn btn-secondary" [ngClass]="(currentPage===1 || searchInProgress)?'disabled':''" (click)="page('previous')">
+                        <fa-icon [icon]="faAngleLeft"></fa-icon>
+                    </button>
+                </div>
+                <div class="col-lg-2 d-flex justify-content-center">
+                    Page
+                </div>
+                <div class="col-lg-1">
+                    <input type="text" style="max-width:40px;" formControlName="pageInput" [(ngModel)]="currentPage" >
+
+                </div>
+                <div class="col-lg-2">
+                    of {{nbPages}}
+                </div>
+                <div class="col-lg-1">
+                    <button class="btn btn-secondary" [ngClass]="(currentPage>=nbPages || searchInProgress)?'disabled':''" (click)="page('next')">
+                        <fa-icon [icon]="faAngleRight"></fa-icon>
+                    </button>
+                </div>
+                <div class="col-lg-1">
+                    <button class="btn btn-secondary" [ngClass]="(currentPage>=nbPages || searchInProgress)?'disabled':''" (click)="page('last')">
+                        <fa-icon [icon]="faAngleDoubleRight"></fa-icon>
+                    </button>
+                </div>
+
+            </div>
+            <!-- no validation errors -->
+            <div class="row w-100" *ngIf="pageInput?.valid || !pageSubmitted">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-8">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row w-100 text-danger" *ngIf="pageInput?.invalid && pageSubmitted">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-8">
+                    <span *ngIf="(pageInput?.errors?.pattern || pageInput?.errors?.min || pageInput?.errors?.max)">
+                        Page number must be between 1 and {{nbPages}}. 
+                    </span>
+                    <span *ngIf="pageInput?.errors?.required">
+                        Page number is required. 
+                    </span>
+                </div>
+            </div>
+        </form>
+        <!--end page form -->
+
+        <p class="card-text text-secondary mt-4">
+            This is a tiny Angular app for searching Hacker News.  
+        </p>
+    </div>
+</div>
