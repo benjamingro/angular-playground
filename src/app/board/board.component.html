@@ -3,24 +3,70 @@
         <h4>Tic tac toe component</h4>
     </div>
     <div class="card-body">
+        <!-- turn row -->
         <div class="row w-100 mb-3">
             <div class="d-flex justify-content-center">
-                <div class="badge rounded-pill bg-primary pt-2">X's turn</div>
+                <div class="badge rounded-pill pt-2" style="background-color:blue;" *ngIf="turn=='x' && !winner">X's turn</div>
+                <div class="badge rounded-pill pt-2" style="background-color:red;" *ngIf="turn=='o'&& !winner">O's turn</div>
+                <div class="badge rounded-pill pt-2" style="background-color:blue;" *ngIf="turn=='o' && winner">X wins!</div>
+                <div class="badge rounded-pill pt-2" style="background-color:red;" *ngIf="turn=='x'&& winner">O wins!</div>
             </div>
         </div>
-
-        <div class="row w-100">
+        <!-- board row -->
+        <div class="row w-100 mb-4">
             <div class="col d-flex justify-content-center">
                 <div *ngFor="let row of boardState; index as i;">
                     <div class="" *ngFor="let square of boardState[i]; index as j">
-                        <div class="square border border-warning d-flex justify-content-center pt-2 " [ngClass]="borderModifier(j,i)">
-                            {{i}},{{j}}
+                        <div class="square d-flex justify-content-center pt-2 " [ngClass]="borderModifier(j,i)" (click)="makeMove(j,i)" style="position:relative;">
+                            <!-- X -->
+                            <span *ngIf="boardState[j][i].letter=='x'">
+                                <fa-icon [icon]="faTimes" class="mx-1 xStyle"></fa-icon>
+                            </span>
+                            <!-- O -->
+                            <span *ngIf="boardState[j][i].letter=='o'">
+                                <span class="mx-1 oStyle">O</span>
+                            </span>
+                            <!-- Horizontal Winner -->
+                            <svg *ngIf="boardState[j][i].horizontalWinner" width="50px" height="50px" style="position:absolute;top:-2px;left:-2px;" >
+                                <line x1="0" y1="25" x2="50" y2="25" style="stroke:rgb(94,182,92);stroke-width:3"></line>
+                            </svg>
+                            <!-- Vertical Winner -->
+                            <svg *ngIf="boardState[j][i].verticalWinner" width="50px" height="50px" style="position:absolute;top:-2px;left:-2px;">
+                                <line x1="25" y1="0" x2="25" y2="50" style="stroke:rgb(94,182,92);stroke-width:3"></line>
+                            </svg>
+                            <!-- Diagonal Left Winner -->
+                            <svg *ngIf="boardState[j][i].diagonalLeftWinner" width="50px" height="50px" style="position:absolute;top:-2px;left:-2px;">
+                                <line x1="50" y1="0" x2="0" y2="50" style="stroke:rgb(94,182,92);stroke-width:3"></line>
+                            </svg>
+                            <!-- Diagonal Right Winner -->
+                            <svg *ngIf="boardState[j][i].diagonalRightWinner" width="50px" height="50px" style="position:absolute;top:-2px;left:-2px;">
+                                <line x1="0" y1="0" x2="50" y2="50" style="stroke:rgb(94,182,92);stroke-width:3"></line>
+                            </svg>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+        <!-- control row -->
+        <div class="row w-100">
+            <div class="col-lg-4">
+                <button class="btn btn-warning" (click)="resetBoard()" [ngClass]="gameState.length<=1?'disabled':''">
+                    Reset board
+                </button>
+            </div>
+            <div class="col-lg-4">
+                <button class="btn btn-info" [ngClass]="gameState.length<=1?'disabled':''" (click)="undoMove()">
+                    Undo move
+                </button>
+            </div>
+            <div class="col-lg-4 d-flex align-items-center">
+                <select [compareWith]="compareFn" [(ngModel)]="boardSizeSelected" (change)="resetBoard()" >
+                    <option *ngFor="let boardSizeOption of boardSizeSelect; index as i; " [ngValue]="boardSizeOption" >
+                        {{boardSizeOption.boardSizeText}}
+                    </option>
+                </select>
+            </div>
+        </div>
         <p class="card-text text-secondary mt-4">
             This is a tic tac toe game implemented in Angular.
         </p>
