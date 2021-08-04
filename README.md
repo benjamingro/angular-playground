@@ -1,6 +1,8 @@
 # AngularPlayground
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
+This project documents the first phase of my learning journey into Angular. The inspiration for this project was the React Playground that I created for the MIT xPRO Professional Certificate in Coding: Full Stack Development with MERN course. I re-wrote all of the React components in Angular as a self-learning exercise. 
+
+ This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
 
 ## Development server
 

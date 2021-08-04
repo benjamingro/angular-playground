@@ -66,8 +66,6 @@ searchHn() : void {
   this.hnServiceService.searchHn(searchTerm,this.currentPage-1)
   .subscribe(
     response =>{
-      // console.log(response); 
-      // console.log(response.hits); 
       this.results = response; 
 
       this.currentPage = this.results.page + 1; 

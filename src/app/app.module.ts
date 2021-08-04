@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
 
+import {MatProgressSpinnerModule,MatSpinner} from '@angular/material/progress-spinner'; 
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -23,6 +26,8 @@ import { AtmMachineComponent } from './atm-machine/atm-machine.component';
 import { HnSearchComponent } from './hn-search/hn-search.component';
 import { SquareComponent } from './square/square.component';
 import { BoardComponent } from './board/board.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,8 @@ import { BoardComponent } from './board/board.component';
     AtmMachineComponent,
     HnSearchComponent,
     SquareComponent,
-    BoardComponent
+    BoardComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +58,8 @@ import { BoardComponent } from './board/board.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     HttpClientModule,
-
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
