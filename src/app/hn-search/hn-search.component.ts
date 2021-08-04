@@ -42,7 +42,6 @@ export class HnSearchComponent implements OnInit {
       this.searchHn(); 
     }
     else{
-      console.log('invalid'); 
     }
 
   }
@@ -61,7 +60,6 @@ pageForm = new FormGroup({
 
 searchHn() : void {
   const searchTerm : string = this.searchForm.value.searchInput; 
-  // console.log(`searchTerm=${searchTerm}`);
   this.searchInProgress = true; 
   this.hnServiceService.searchHn(searchTerm,this.currentPage-1)
   .subscribe(
@@ -81,7 +79,6 @@ searchHn() : void {
       this.searchInProgress = false;
       
     },error=>{
-      console.log(error);
       this.searchInProgress = false;
     });
 }

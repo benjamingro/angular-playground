@@ -35,9 +35,7 @@ export class HnServiceService {
 
   public searchHn(searchTerm:string, page:number = 1) : Observable<hnResults> {
     const search_url = `https://hn.algolia.com/api/v1/search?query=${searchTerm}&page=${page}`;
-    console.log(`search_url = ${search_url}`);
     return this.http.get<hnResults>(search_url).pipe(
-      // catchError(this.handleError<any>('searchHn', []))
       catchError(error =>{return of(error);})
     ); 
   }

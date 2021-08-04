@@ -104,7 +104,6 @@ export class BoardComponent implements OnInit {
       myClass.push('border-end');
     }
 
-    // console.log(`rowIndex = ${rowIndex} columnIndex = ${columnIndex} myClass=${JSON.stringify(myClass)} `)
     return myClass;
   }
 

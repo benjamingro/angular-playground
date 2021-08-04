@@ -39,7 +39,6 @@ export class TodoListComponent implements OnInit {
 
   onSubmit() : void{
     const item : toDoItem = {task: this.addToDoForm.value.addToDo, completed:false}; 
-    // console.log(item);
     // if the task is not an empty string, push it onto the todo list
     if(item.task.trim().length)
     {

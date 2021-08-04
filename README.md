@@ -1,29 +1,13 @@
 # AngularPlayground
 
-This project documents the first phase of my learning journey into Angular. The inspiration for this project was the React Playground that I created for the MIT xPRO Professional Certificate in Coding: Full Stack Development with MERN course. I re-wrote all of the React components in Angular as a self-learning exercise. 
+This project documents the first phase of my learning journey into Angular. The inspiration for this project was the [React Playground](https://benjamingro.github.io/react-playground/#/myfirstcomponents) that I created for the MIT xPRO Professional Certificate in Coding: Full Stack Development with MERN course. I re-wrote all of the React components in Angular as a self-learning exercise. 
 
- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3.
+ This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.3. If you want to run this project locally, then fork this repository, run 'npm install' to install dependancies and then 'ng serve' inside the project folder on your local machine. 
 
-## Development server
+## Viewing this project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Contact me
+Email: gross.benji@gmail.com
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[LinkedIN](https://www.linkedin.com/in/nutritionengineering/)

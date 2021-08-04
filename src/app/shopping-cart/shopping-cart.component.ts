@@ -38,7 +38,6 @@ export class ShoppingCartComponent implements OnInit {
 
   private stockProducts(productArray:ProductArray):void{
     this.productArray = productArray; 
-    console.log(`this.productArray=${JSON.stringify(this.productArray)}`);
     this.productArray.forEach(product=>{
       product['Incart']=0;
     });
@@ -53,25 +52,21 @@ export class ShoppingCartComponent implements OnInit {
         this.shoppingCartState.initialLoadBusy = false; 
       },
       (error) => {
-        console.log(error);
       }
     );
   }
 
   public replenishStock():void { 
-    console.log('replenish!'); 
     this.shoppingCartState.busy = true; 
     this.shoppingCartState.replenishStockBusy = true; 
     this.shoppingCartService.replenishStock().subscribe(
       response=>{
-        console.log(`replenishStock response = ${JSON.stringify(response)}`);
         // ProductArray is response; 
         this.stockProducts(response );
         this.shoppingCartState.busy = false; 
         this.shoppingCartState.replenishStockBusy = false;
       },
       error=>{
-        console.log(error); 
         // set error state 
       });
 
@@ -89,7 +84,6 @@ export class ShoppingCartComponent implements OnInit {
         this.shoppingCartState.checkoutBusy = false;
       },
       error=>{
-        console.log(error); 
         // set error state
       }); 
   }
@@ -100,16 +94,13 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   public addToCart(myIndex:number):void{
-
     this.productArray[myIndex].Incart++; 
-    console.log(`${this.productArray[myIndex].Incart}`);
   }
 
 
   private reducer_ItemsCount = (accumulator:number, currentValue:Product) => accumulator + currentValue.Incart;
 
   public Incart_totalItems():number{
-    // return this.productArray.length; 
     return this.productArray.reduce(this.reducer_ItemsCount,0); 
 
   }

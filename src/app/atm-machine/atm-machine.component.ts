@@ -51,20 +51,13 @@ export class AtmMachineComponent implements OnInit {
   }
 
 
-  onSubmit_withdraw(){
-    // console.log('submitted withdraw');
-    // console.log(`this.withdrawForm.valid = ${this.withdrawForm.valid}`);
-    // console.log(`this.withdrawForm.value.withdrawInput = ${JSON.stringify(this.withdrawForm.value)}`);
-    
-
+  onSubmit_withdraw(){    
     this.withdrawSubmitted = true; 
     if(this.withdrawForm.valid)
     {
-      console.log('the form is valid');
       this.balance -= this.withdrawForm.value.withdrawInput;
       this.state='withdrawSuccess'; 
       this.withdrawForm.setValue({withdrawInput:''});
-
     }
   }
 
@@ -72,7 +65,6 @@ export class AtmMachineComponent implements OnInit {
     this.depositSubmitted = true; 
     if(this.depositForm.valid)
     {
-      console.log('the deposit form is valid');
       this.balance += Number(this.depositForm.value.depositInput);
       this.state='depositSuccess'; 
       this.depositForm.setValue({depositInput:''});
