@@ -5,10 +5,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link " routerLink="/home">Intro</a>
+            <a class="nav-link " routerLink="/home" [ngClass]="current_route=='/home'?'active':''">Intro</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/playground">Components</a>
+            <a class="nav-link" routerLink="/playground" [ngClass]="current_route=='/playground'?'active':''">Components</a>
           </li>
         </ul>
 
