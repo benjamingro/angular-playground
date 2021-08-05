@@ -12,7 +12,6 @@ export class MyNavbarComponent implements OnInit {
   constructor(private location : Location) { 
     location.onUrlChange((url: string, state: unknown):void=>{
       this.current_route = url; 
-      console.log(`this.current_route = ${this.current_route}`); 
     }); 
   }
 
