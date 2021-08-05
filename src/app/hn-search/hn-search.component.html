@@ -1,8 +1,8 @@
-<div class="card h-100">
-    <div class="card-header">
+<div class="card h-100" style="overflow-x:scroll;">
+    <div class="card-header minWidth">
         <h4>Hacker News search</h4>
     </div>
-    <div class="card-body">
+    <div class="card-body minWidth">
         <!-- start search form -->
         <form [formGroup]="searchForm" (ngSubmit)="onSubmit_search()">
             <div class="row w-100">
@@ -11,10 +11,10 @@
                 </div>
             </div>
             <div class="row w-100">
-                <div class="col-lg-6">
+                <div class="col-lg-6 py-1">
                     <input type="text" formControlName="searchInput">
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 py-1">
                     <button class="btn btn-primary" style="min-width:210px;" [ngClass]="searchInProgress?'disabled':''">Search</button>
                 </div>
             </div>
@@ -48,33 +48,33 @@
         <!--start page form -->
         <form *ngIf="results.hits?.length" class="mt-3" [formGroup]="pageForm" (ngSubmit)="onSubmit_page()">
             <div class="row w-100">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-1">
+                <div class="col-2"></div>
+                <div class="col-1">
                     <button class="btn btn-secondary" [ngClass]="(currentPage===1 || searchInProgress)?'disabled':''" (click)="page('first')">
                         <fa-icon [icon]="faAngleDoubleLeft"></fa-icon>
                     </button>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <button class="btn btn-secondary" [ngClass]="(currentPage===1 || searchInProgress)?'disabled':''" (click)="page('previous')">
                         <fa-icon [icon]="faAngleLeft"></fa-icon>
                     </button>
                 </div>
-                <div class="col-lg-2 d-flex justify-content-center">
+                <div class="col-2 d-flex justify-content-center">
                     Page
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <input type="text" style="max-width:40px;" formControlName="pageInput" [(ngModel)]="currentPage" >
 
                 </div>
-                <div class="col-lg-2">
+                <div class="col-2">
                     of {{nbPages}}
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <button class="btn btn-secondary" [ngClass]="(currentPage>=nbPages || searchInProgress)?'disabled':''" (click)="page('next')">
                         <fa-icon [icon]="faAngleRight"></fa-icon>
                     </button>
                 </div>
-                <div class="col-lg-1">
+                <div class="col-1">
                     <button class="btn btn-secondary" [ngClass]="(currentPage>=nbPages || searchInProgress)?'disabled':''" (click)="page('last')">
                         <fa-icon [icon]="faAngleDoubleRight"></fa-icon>
                     </button>

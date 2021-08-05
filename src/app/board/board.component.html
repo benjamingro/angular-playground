@@ -49,17 +49,17 @@
         </div>
         <!-- control row -->
         <div class="row w-100">
-            <div class="col-lg-4">
+            <div class="col-lg-4 py-1 d-flex justify-content-center">
                 <button class="btn btn-warning" (click)="resetBoard()" [ngClass]="gameState.length<=1?'disabled':''">
                     Reset board
                 </button>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 py-1 d-flex justify-content-center">
                 <button class="btn btn-info" [ngClass]="gameState.length<=1?'disabled':''" (click)="undoMove()">
                     Undo move
                 </button>
             </div>
-            <div class="col-lg-4 d-flex align-items-center">
+            <div class="col-lg-4 d-flex align-items-center py-1 d-flex justify-content-center">
                 <select [compareWith]="compareFn" [(ngModel)]="boardSizeSelected" (change)="resetBoard()" >
                     <option *ngFor="let boardSizeOption of boardSizeSelect; index as i; " [ngValue]="boardSizeOption" >
                         {{boardSizeOption.boardSizeText}}
